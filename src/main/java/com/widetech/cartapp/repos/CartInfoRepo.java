@@ -11,7 +11,10 @@ import com.widetech.cartapp.entities.CartInfoEntity;
 
 @Repository
 public interface CartInfoRepo extends JpaRepository<CartInfoEntity, Integer>, JpaSpecificationExecutor<CartInfoEntity>{
-    @Query(value = "SELECT mc.*, mcd.product_id, mcd.quantity FROM ms_cart AS mc " + 
-            "JOIN ms_cart_detail AS mcd ON mc.id = mcd.cart_id WHERE mc.rec_status = 'A'", nativeQuery = true)
+    @Query(value = "SELECT DISTINCT mc.*, " +
+                   "mcd.product_id AS product_id, mcd.cart_id AS cart_id  " +
+                   "FROM ms_cart_detail AS mcd " +
+                   "JOIN ms_cart AS mc ON mc.id = mcd.cart_id ",
+           nativeQuery = true)
     List<CartInfoEntity> findAllCartInfo();
 } 

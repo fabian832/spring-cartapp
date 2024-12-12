@@ -4,19 +4,22 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.widetech.cartapp.entities.CartDetailEntity;
 import com.widetech.cartapp.entities.CartEntity;
 import com.widetech.cartapp.entities.CartInfoEntity;
-import com.widetech.cartapp.exceptions.ClientException;
+import com.widetech.cartapp.entities.ProductEntity;
 import com.widetech.cartapp.globals.GlobalConstant;
 import com.widetech.cartapp.models.CartDetailModel;
 import com.widetech.cartapp.models.CartModel;
 import com.widetech.cartapp.repos.CartDetailRepo;
 import com.widetech.cartapp.repos.CartInfoRepo;
 import com.widetech.cartapp.repos.CartRepo;
+import com.widetech.cartapp.repos.ProductRepo;
 
 @Service
 public class CartService {
@@ -29,9 +32,12 @@ public class CartService {
     @Autowired
     private CartInfoRepo cartInfoRepo;
 
-    public List<CartInfoEntity> getAll() {
-        List<CartInfoEntity> cartInfo = new ArrayList<>();
-        cartInfoRepo.findAllCartInfo().forEach(cartInfo::add);
+    @Autowired
+    private ProductRepo productRepo;
+
+    public List<CartDetailEntity> getAll() {
+        List<CartDetailEntity> cartInfo = new ArrayList<>();
+        cartDetailRepo.findAllCartInfo().forEach(cartInfo::add);
 
         return cartInfo;
     }
@@ -56,9 +62,23 @@ public class CartService {
     }
 
     public CartDetailEntity addProduct(CartDetailModel cartDetailModel) {
-        CartDetailEntity cartDetail = new CartDetailEntity();
+        CartDetailEntity cartDetail = cartDetailRepo.findActivedProduct(cartDetailModel.getProductId(), cartDetailModel.getCartId());
+        ProductEntity product = productRepo.findById(cartDetailModel.getProductId()).orElse(null);
+        
+        if(cartDetail != null){
+            if(cartDetail.getQuantity() + cartDetailModel.getQuantity() > product.getStock()){
+                cartDetail.setQuantity(product.getStock());
+            }
+            else{
+                cartDetail.setQuantity(cartDetail.getQuantity() + cartDetailModel.getQuantity());
+            }
+            cartDetail.setUpdatedDate(new Timestamp(System.currentTimeMillis()));
 
-        cartDetail.setId(cartDetailModel.getCartId());
+            return cartDetailRepo.save(cartDetail);
+        }
+
+        cartDetail = new CartDetailEntity();
+        cartDetail.setCartId(cartDetailModel.getCartId());
         cartDetail.setProductId(cartDetailModel.getProductId());
         cartDetail.setQuantity(cartDetailModel.getQuantity());
         cartDetail.setRecStatus(GlobalConstant.REC_STATUS_ACTIVE);
@@ -66,7 +86,6 @@ public class CartService {
 
         return cartDetailRepo.save(cartDetail);
     }
-
 
     public CartEntity editCart(CartModel cartModel) {
         CartEntity cart = findCartById(cartModel.getId());

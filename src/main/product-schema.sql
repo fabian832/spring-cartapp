@@ -7,11 +7,8 @@ CREATE TABLE ms_product(
     type VARCHAR(50) NOT NULL,
     price INT4 NOT NULL,
     created_date TIMESTAMP NOT NULL,
-    creator_id INT4 NOT NULL,
     updated_date TIMESTAMP NULL,
-    updator_id INT4 NULL,
     deleted_date TIMESTAMP NULL,
-    deletor_id INT4 NULL,
     rec_status VARCHAR(1) NULL DEFAULT 'N'::VARCHAR
 )
 

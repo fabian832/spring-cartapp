@@ -26,8 +26,20 @@ public class CartInfoEntity {
     @Column(name="product_id")
     private Integer productId;
 
-    @Column(name="quantity")
-    private Integer quantity;
+    // @Column(name="product_name")
+    // private String productName;
+
+    // @Column(name="product_type")
+    // private String productType;
+
+    // @Column(name="product_price")
+    // private Long productPrice;
+
+    // @Column(name="product_quantity")
+    // private String productQuantity;
+
+    // @Column(name="product_total")
+    // private Long productTotal;
 
     @Column(name="created_date")
     private Timestamp createdDate;
@@ -48,6 +60,70 @@ public class CartInfoEntity {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Integer productId) {
+        this.productId = productId;
+    }
+
+    // public String getProductName() {
+    //     return productName;
+    // }
+
+    // public void setProductName(String productName) {
+    //     this.productName = productName;
+    // }
+
+    // public String getProductType() {
+    //     return productType;
+    // }
+
+    // public void setProductType(String productType) {
+    //     this.productType = productType;
+    // }
+
+    // public Long getProductPrice() {
+    //     return productPrice;
+    // }
+
+    // public void setProductPrice(Long productPrice) {
+    //     this.productPrice = productPrice;
+    // }
+
+    // public String getProductQuantity() {
+    //     return productQuantity;
+    // }
+
+    // public void setProductQuantity(String productQuantity) {
+    //     this.productQuantity = productQuantity;
+    // }
+
+    // public Long getProductTotal() {
+    //     return productTotal;
+    // }
+
+    // public void setProductTotal(Long productTotal) {
+    //     this.productTotal = productTotal;
+    // }
 
     public Timestamp getCreatedDate() {
         return createdDate;
@@ -80,37 +156,4 @@ public class CartInfoEntity {
     public void setRecStatus(String recStatus) {
         this.recStatus = recStatus;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Integer getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Integer productId) {
-        this.productId = productId;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-    
 }

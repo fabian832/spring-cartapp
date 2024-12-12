@@ -17,6 +17,9 @@ public class CartDetailEntity {
     @Column(name="id")
     private Integer id;
 
+    @Column(name="cart_id")
+    private Integer cartId;
+
     @Column(name="product_id")
     private Integer productId;
 
@@ -34,6 +37,18 @@ public class CartDetailEntity {
 
     @Column(name="rec_status")
     private String recStatus;
+
+    @Column(name="product_name")
+    private String productName;
+
+    @Column(name="product_type")
+    private String productType;
+
+    @Column(name="product_price")
+    private Long productPrice;
+
+    @Column(name="product_total")
+    private Long productTotal;
 
     public Integer getId() {
         return id;
@@ -89,6 +104,46 @@ public class CartDetailEntity {
 
     public void setRecStatus(String recStatus) {
         this.recStatus = recStatus;
+    }
+
+    public Integer getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(Integer cartId) {
+        this.cartId = cartId;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getProductType() {
+        return productType;
+    }
+
+    public void setProductType(String productType) {
+        this.productType = productType;
+    }
+
+    public Long getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(Long productPrice) {
+        this.productPrice = productPrice;
+    }
+    
+    public Long getProductTotal() {
+        return productTotal;
+    }
+
+    public void setProductTotal(Long productTotal) {
+        this.productTotal = productTotal;
     }
     
 }
