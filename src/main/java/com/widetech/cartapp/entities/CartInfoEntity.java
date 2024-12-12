@@ -26,21 +26,6 @@ public class CartInfoEntity {
     @Column(name="product_id")
     private Integer productId;
 
-    // @Column(name="product_name")
-    // private String productName;
-
-    // @Column(name="product_type")
-    // private String productType;
-
-    // @Column(name="product_price")
-    // private Long productPrice;
-
-    // @Column(name="product_quantity")
-    // private String productQuantity;
-
-    // @Column(name="product_total")
-    // private Long productTotal;
-
     @Column(name="created_date")
     private Timestamp createdDate;
 
@@ -84,46 +69,6 @@ public class CartInfoEntity {
     public void setProductId(Integer productId) {
         this.productId = productId;
     }
-
-    // public String getProductName() {
-    //     return productName;
-    // }
-
-    // public void setProductName(String productName) {
-    //     this.productName = productName;
-    // }
-
-    // public String getProductType() {
-    //     return productType;
-    // }
-
-    // public void setProductType(String productType) {
-    //     this.productType = productType;
-    // }
-
-    // public Long getProductPrice() {
-    //     return productPrice;
-    // }
-
-    // public void setProductPrice(Long productPrice) {
-    //     this.productPrice = productPrice;
-    // }
-
-    // public String getProductQuantity() {
-    //     return productQuantity;
-    // }
-
-    // public void setProductQuantity(String productQuantity) {
-    //     this.productQuantity = productQuantity;
-    // }
-
-    // public Long getProductTotal() {
-    //     return productTotal;
-    // }
-
-    // public void setProductTotal(Long productTotal) {
-    //     this.productTotal = productTotal;
-    // }
 
     public Timestamp getCreatedDate() {
         return createdDate;
