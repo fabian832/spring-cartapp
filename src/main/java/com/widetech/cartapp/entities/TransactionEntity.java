@@ -9,29 +9,19 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-
 @Entity
-@Table(name= "ms_cart_detail")
-public class CartInfoEntity {
+@Table(name= "tr_header")
+public class TransactionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Integer id;
-
-    @Column(name="cart_id")
-    private Integer cartId;
 
     @Column(name="name")
     private String name;
 
     @Column(name="address")
     private String address;
-
-    @Column(name="product_id")
-    private Integer productId;
-
-    @Column(name="quantity")
-    private Integer quantity;
 
     @Column(name="created_date")
     private Timestamp createdDate;
@@ -45,48 +35,12 @@ public class CartInfoEntity {
     @Column(name="rec_status")
     private String recStatus;
 
-    @Column(name="product_name")
-    private String productName;
-
-    @Column(name="product_type")
-    private String productType;
-
-    @Column(name="product_price")
-    private Long productPrice;
-
-    @Column(name="product_total")
-    private Long productTotal;
-
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getCartId() {
-        return cartId;
-    }
-
-    public void setCartId(Integer cartId) {
-        this.cartId = cartId;
-    }
-
-    public Integer getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Integer productId) {
-        this.productId = productId;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
     }
 
     public Timestamp getCreatedDate() {
@@ -121,38 +75,6 @@ public class CartInfoEntity {
         this.recStatus = recStatus;
     }
 
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public String getProductType() {
-        return productType;
-    }
-
-    public void setProductType(String productType) {
-        this.productType = productType;
-    }
-
-    public Long getProductPrice() {
-        return productPrice;
-    }
-
-    public void setProductPrice(Long productPrice) {
-        this.productPrice = productPrice;
-    }
-
-    public Long getProductTotal() {
-        return productTotal;
-    }
-
-    public void setProductTotal(Long productTotal) {
-        this.productTotal = productTotal;
-    }
-
     public String getName() {
         return name;
     }
@@ -168,4 +90,5 @@ public class CartInfoEntity {
     public void setAddress(String address) {
         this.address = address;
     }
+    
 }

@@ -11,15 +11,15 @@ import jakarta.persistence.Table;
 
 
 @Entity
-@Table(name= "ms_cart_detail")
-public class CartInfoEntity {
+@Table(name= "tr_header")
+public class TransactionInfoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Integer id;
 
-    @Column(name="cart_id")
-    private Integer cartId;
+    @Column(name="transaction_id")
+    private Integer transactionId;
 
     @Column(name="name")
     private String name;
@@ -65,12 +65,12 @@ public class CartInfoEntity {
         this.id = id;
     }
 
-    public Integer getCartId() {
-        return cartId;
+    public Integer getTransactionId() {
+        return transactionId;
     }
 
-    public void setCartId(Integer cartId) {
-        this.cartId = cartId;
+    public void setTransactionId(Integer transactionId) {
+        this.transactionId = transactionId;
     }
 
     public Integer getProductId() {

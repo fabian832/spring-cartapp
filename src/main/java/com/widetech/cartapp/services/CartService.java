@@ -35,9 +35,9 @@ public class CartService {
     @Autowired
     private ProductRepo productRepo;
 
-    public List<CartDetailEntity> getAll() {
-        List<CartDetailEntity> cartInfo = new ArrayList<>();
-        cartDetailRepo.findAllCartInfo().forEach(cartInfo::add);
+    public List<CartInfoEntity> getAll() {
+        List<CartInfoEntity> cartInfo = new ArrayList<>();
+        cartInfoRepo.findAll().forEach(cartInfo::add);
 
         return cartInfo;
     }
@@ -53,10 +53,6 @@ public class CartService {
         return cartRepo.save(cart);
     }
 
-    public CartDetailEntity findById(Integer id){
-        return cartDetailRepo.findById(id).orElse(null);
-    }
-
     public CartEntity findCartById(Integer id){
         return cartRepo.findById(id).orElse(null);
     }
@@ -68,6 +64,9 @@ public class CartService {
         if(cartDetail != null){
             if(cartDetail.getQuantity() + cartDetailModel.getQuantity() > product.getStock()){
                 cartDetail.setQuantity(product.getStock());
+            }else if(cartDetail.getRecStatus().equals(GlobalConstant.REC_STATUS_NON_ACTIVE)){
+                cartDetail.setRecStatus(GlobalConstant.REC_STATUS_ACTIVE);
+                cartDetail.setQuantity(cartDetailModel.getQuantity());
             }
             else{
                 cartDetail.setQuantity(cartDetail.getQuantity() + cartDetailModel.getQuantity());
@@ -76,6 +75,8 @@ public class CartService {
 
             return cartDetailRepo.save(cartDetail);
         }
+        
+
 
         cartDetail = new CartDetailEntity();
         cartDetail.setCartId(cartDetailModel.getCartId());
